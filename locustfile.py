@@ -1,12 +1,17 @@
 import time
 from locust import HttpUser, task, between
 
+"""
+The locust version 1.4.1 as below:
+"""
+
 
 class QuickstartUser(HttpUser):
-    # Our class defines a wait_time that will make the simulated users wait
-    # between 1 and 2.5 seconds after each task (see below) is executed.
+    # The class defines a wait_time that will make the simulated users wait
+    # between 1 and 2.5 seconds after each task.
     wait_time = between(1, 2.5)
 
+    # @task(7) mean this method have 70% rate to be executed.
     @task(7)
     def hello_world(self):
         self.client.get('/login', verify=False)
